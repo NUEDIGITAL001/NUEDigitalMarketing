@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   NÜE Digital design tokens (foundation doc, section 2)
+   ------------------------------------------------------------------ */
+@theme {
+  /* Color */
+  --color-obsidian: #080a0c;
+  --color-carbon: #15191d;
+  --color-graphite: #252a30;
+  --color-titanium: #737d85;
+  --color-titanium-light: #8a949c;
+  --color-teal: #00c7d9;
+  --color-teal-deep: #008f9d;
+  --color-teal-ink: #00707b;
+  --color-concrete: #c4c9cc;
+  --color-ice: #d8f5f7;
+  --color-white: #ffffff;
+  --color-logo-teal: #01d3ea;
+
+  /* Type families (set by next/font variables in layout.tsx) */
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-ui: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii: restrained */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+:root {
+  --dur-micro: 160ms;
+  --dur-ui: 280ms;
+  --dur-reveal: 700ms;
+  --dur-scene: 1200ms;
+  --gutter: 20px;
+  --maxw: 1440px;
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 32px; }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 48px; }
+}
+
+html {
+  background: var(--color-obsidian);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-obsidian);
+  color: var(--color-concrete);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-teal);
+  color: var(--color-obsidian);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------
+   Typography scale (fluid, mobile → desktop)
+   ------------------------------------------------------------------ */
+@utility display-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2.75rem, 1.6rem + 5.6vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+@utility display-m {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 1.3rem + 2.4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--color-white);
+}
+@utility display-l {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--color-white);
+}
+@utility h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+@utility h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.875rem);
+  line-height: 1.2;
+  color: var(--color-white);
+}
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.24em;
+  color: var(--color-teal);
+}
+@utility body-l {
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.6;
+}
+@utility ui-text {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+@utility mono-data {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+}
+@utility measure {
+  max-width: 68ch;
+}
+
+/* ------------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------------ */
+@utility container-nue {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@utility section-s {
+  padding-block: 64px;
+  @media (min-width: 1024px) { padding-block: 96px; }
+}
+@utility section-m {
+  padding-block: 96px;
+  @media (min-width: 1024px) { padding-block: 160px; }
+}
+@utility section-l {
+  padding-block: 128px;
+  @media (min-width: 1024px) { padding-block: 224px; }
+}
+
+/* Corner ticks used instead of heavy card backgrounds */
+@utility ticks {
+  position: relative;
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--color-titanium);
+    pointer-events: none;
+  }
+  &::before { top: -1px; left: -1px; border-top: 1px solid; border-left: 1px solid; }
+  &::after { bottom: -1px; right: -1px; border-bottom: 1px solid; border-right: 1px solid; }
+}
+
+/* Metallic sheen for primary buttons (Material Intelligence pillar) */
+@utility sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.45) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 700ms var(--ease-out-expo);
+    z-index: -1;
+  }
+  &:hover::after, &:focus-visible::after { transform: translateX(120%); }
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--color-teal);
+  color: var(--color-obsidian);
+  padding: 10px 16px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+.skip-link:focus { top: 16px; }
+
+/* Motion is opt-out: everything is visible by default; GSAP sets start
+   states only after it loads. This class marks elements GSAP animates. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Ambient CSS loops (paused when reduced motion is on) */
+@keyframes trail-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -2000; }
+}
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-40px, 12px, 0); }
+}
+
+/* Before GSAP runs, hide only the hero intro elements so they don't flash.
+   The boot script adds .motion-pending and removes it after 2.5s no matter
+   what, so content can never stay hidden if scripts fail. */
+html.motion-pending [data-hero-line] { transform: translateY(105%); }
+html.motion-pending [data-hero-fade] { opacity: 0; }
+html.motion-pending .hero-e [data-e-bar] { transform: scaleX(0); }
+.hero-e [data-e-bar], .conv-e [data-e-bar] { transform-box: fill-box; transform-origin: left center; }
+
+@keyframes industry-in {
+  from { opacity: 0; clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+.industry-swap { animation: industry-in 420ms var(--ease-out-expo) both; }
