@@ -263,3 +263,11 @@ html.motion-pending .hero-e [data-e-bar] { transform: scaleX(0); }
   to { opacity: 1; clip-path: inset(0 0 0 0); }
 }
 .industry-swap { animation: industry-in 420ms var(--ease-out-expo) both; }
+
+/* Long-form prose on interior pages */
+.prose-nue h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.75rem; line-height: 1.15; color: var(--color-white); margin-top: 2.5rem; }
+.prose-nue h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--color-white); margin-top: 2rem; }
+.prose-nue a { color: var(--color-ice); text-decoration: underline; text-decoration-color: var(--color-teal); text-underline-offset: 4px; }
+.prose-nue ul { list-style: none; padding: 0; }
+.prose-nue li { position: relative; padding-left: 1.5rem; margin-top: 0.5rem; }
+.prose-nue li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.75rem; height: 1px; background: var(--color-teal); }
