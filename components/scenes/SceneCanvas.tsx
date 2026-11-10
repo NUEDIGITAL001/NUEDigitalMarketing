@@ -3,15 +3,9 @@
 import { useEffect, useRef } from "react";
 
 import type { SceneKind } from "@/lib/scenes";
+import { draws2, TEAL, ICE, rand, type Draw } from "./draws2";
 
-type Draw = (c: CanvasRenderingContext2D, w: number, h: number, t: number, p: number) => void;
 
-const TEAL = "0,199,217";
-const ICE = "216,245,247";
-const rand = (i: number) => {
-  const x = Math.sin(i * 127.1 + 311.7) * 43758.5453;
-  return x - Math.floor(x);
-};
 
 /** Light fibres rising from the foreground to a vanishing point. */
 const trails: Draw = (c, w, h, t, p) => {
@@ -245,13 +239,13 @@ const city: Draw = (c, w, h, t, p) => {
   c.globalCompositeOperation = "source-over";
 };
 
-const draws: Record<SceneKind, Draw> = { trails, contours, dots, tunnel, bars, city };
+const draws: Record<SceneKind, Draw> = { trails, contours, dots, tunnel, bars, city, ...draws2 };
 
 /**
  * Decorative animated backdrop. Pauses off screen, renders one still frame
  * when the visitor reduces motion, and reacts gently to scroll position.
  */
-export function SceneCanvas({ kind, className }: { kind: SceneKind; className?: string }) {
+export function SceneCanvas({ kind, className, close }: { kind: SceneKind; className?: string; /** Closer, later view of the same scene (used lower on the page). */ close?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -279,7 +273,15 @@ export function SceneCanvas({ kind, className }: { kind: SceneKind; className?: 
       const r = canvas.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, 1 - (r.top + r.height) / (window.innerHeight + r.height)));
       ctx.clearRect(0, 0, w, h);
-      draw(ctx, w, h, still() ? 12 : (now - start) / 1000 + 12, p);
+      const t = (still() ? 12 : (now - start) / 1000 + 12) + (close ? 47 : 0);
+      if (close) {
+        ctx.save();
+        ctx.translate(w * 0.78, h * 0.5);
+        ctx.scale(1.55, 1.55);
+        ctx.translate(-w * 0.78, -h * 0.5);
+        draw(ctx, w, h, t, p);
+        ctx.restore();
+      } else draw(ctx, w, h, t, p);
       if (visible && !still()) raf = requestAnimationFrame(frame);
     };
     const kick = () => {
@@ -304,7 +306,7 @@ export function SceneCanvas({ kind, className }: { kind: SceneKind; className?: 
       io.disconnect();
       window.removeEventListener("nue:motion-change", kick);
     };
-  }, [kind]);
+  }, [kind, close]);
 
   return <canvas ref={ref} aria-hidden="true" className={className} />;
 }

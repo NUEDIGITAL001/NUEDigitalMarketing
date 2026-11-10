@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Crumb } from "@/lib/seo";
 import { SceneCanvas } from "@/components/scenes/SceneCanvas";
-import { sceneKinds, type SceneKind } from "@/lib/scenes";
+import { pageScenes, type SceneKind } from "@/lib/scenes";
 
 /** Interior page hero with breadcrumbs. Static (no motion dependency). */
 export function PageHero({
@@ -12,7 +12,6 @@ export function PageHero({
   lead,
   children,
   aside,
-  seed = 5,
   scene,
 }: {
   crumbs: Crumb[];
@@ -21,15 +20,14 @@ export function PageHero({
   lead?: ReactNode;
   children?: ReactNode;
   aside?: ReactNode;
-  seed?: number;
-  /** Animated backdrop. Defaults to one picked from the seed so pages differ. */
+  /** Animated backdrop. Defaults to the scene assigned to this page in lib/scenes. */
   scene?: SceneKind;
 }) {
-  const kind = scene ?? sceneKinds[seed % sceneKinds.length];
+  const kind = scene ?? pageScenes[crumbs[crumbs.length - 1].path]?.scene;
   return (
     <section className="relative isolate overflow-hidden border-b border-graphite bg-obsidian">
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <SceneCanvas kind={kind} className="scene-drift absolute inset-0 h-full w-full" />
+        {kind && <SceneCanvas kind={kind} className="scene-drift absolute inset-0 h-full w-full" />}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(8_10_12/0.94)_0%,rgb(8_10_12/0.72)_42%,rgb(8_10_12/0.12)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,transparent,rgb(8_10_12/0.9))]" />
       </div>

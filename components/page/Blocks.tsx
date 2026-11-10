@@ -114,10 +114,10 @@ export function LinkGrid({ links }: { links: { label: string; href: string; blur
 }
 
 /** Immersive full-bleed scene carrying the one line that sums the page up. */
-export function StatementBand({ children, scene = "tunnel" }: { children: ReactNode; scene?: SceneKind }) {
+export function StatementBand({ children, scene }: { children: ReactNode; scene?: SceneKind }) {
   return (
     <section aria-label="In short" className="statement relative isolate flex min-h-[86svh] items-center overflow-hidden border-b border-graphite bg-obsidian">
-      <SceneCanvas kind={scene} className="absolute inset-0 -z-20 h-full w-full" />
+      {scene && <SceneCanvas kind={scene} close className="absolute inset-0 -z-20 h-full w-full" />}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(80%_70%_at_30%_50%,rgb(8_10_12/0.62),rgb(8_10_12/0.12)_70%,transparent)]" />
       <div className="container-nue py-24">
         <p className="statement-kicker eyebrow">In short</p>
@@ -133,7 +133,6 @@ export function StatementBand({ children, scene = "tunnel" }: { children: ReactN
 export function CtaBand({ title = "Let’s talk about what’s next.", lead, source }: { title?: string; lead?: string; source: string }) {
   return (
     <section aria-labelledby="cta-title" className="cta-glow relative isolate overflow-hidden bg-carbon">
-      <SceneCanvas kind="bars" className="absolute inset-0 -z-10 h-full w-full opacity-40" />
       <div className="container-nue section-m">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">

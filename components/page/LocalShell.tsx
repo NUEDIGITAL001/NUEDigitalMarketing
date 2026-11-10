@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { PageHero } from "./PageHero";
 import { CtaBand, FaqList, Section, StatementBand } from "./Blocks";
 import { statements } from "@/lib/statements";
+import { pageScenes } from "@/lib/scenes";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, type Crumb } from "@/lib/seo";
 
@@ -16,9 +17,9 @@ export function LocalShell({
   return (
     <>
       <JsonLd data={[serviceJsonLd({ path, name: serviceName ?? name, description, serviceType }), breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
-      <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length + 3} scene={isHub ? "city" : undefined} />
+      <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} />
       {children}
-      {statements[path] && <StatementBand scene={isHub ? "contours" : "city"}>{statements[path]}</StatementBand>}
+      {statements[path] && <StatementBand scene={pageScenes[path]?.scene}>{statements[path]}</StatementBand>}
       <Section id="faq" eyebrow="Questions" title="Rochester questions, answered" tone="obsidian">
         <FaqList faqs={faqs} />
       </Section>
