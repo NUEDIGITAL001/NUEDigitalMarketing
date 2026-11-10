@@ -19,7 +19,7 @@ export function LocalShell({
       <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length + 3} scene={isHub ? "city" : undefined} />
       {children}
       {statements[path] && <StatementBand scene={isHub ? "contours" : "city"}>{statements[path]}</StatementBand>}
-      <Section id="faq" eyebrow="Questions" title="Rochester questions, answered" tone="light">
+      <Section id="faq" eyebrow="Questions" title="Rochester questions, answered" tone="obsidian">
         <FaqList faqs={faqs} />
       </Section>
       <CtaBand title={ctaTitle ?? "Let’s meet. Rochester is home."} lead="We work with businesses across Rochester and Western New York in person. Tell us about yours and we’ll set up a time to talk." source={path} />

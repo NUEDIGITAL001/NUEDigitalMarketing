@@ -59,7 +59,7 @@ export function ServiceShell({
       <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length} scene={heroScene} />
       {children}
       {statements[path] && <StatementBand scene={bandScene}>{statements[path]}</StatementBand>}
-      <Section id="faq" eyebrow="Questions" title="Straight answers" tone="light">
+      <Section id="faq" eyebrow="Questions" title="Straight answers" tone="obsidian">
         <FaqList faqs={faqs} />
       </Section>
       {relatedLinks.length > 0 && (
