@@ -19,7 +19,7 @@ Copy `.env.example` to `.env.local`. Never commit real values.
 | `RESEND_API_KEY` | Resend API key used by the contact form |
 | `CONTACT_TO_EMAIL` | Private inbox that receives inquiries. Server-only, never shown on the site |
 | `CONTACT_FROM_EMAIL` | Verified sender, e.g. `NÜE Digital Website <hello@nuedigitalmarketing.com>` |
-| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container (optional) |
+| `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container. Defaults to GTM-T6DQ49C2; set to `off` to disable |
 
 Without `RESEND_API_KEY` and `CONTACT_TO_EMAIL` the form validates input but tells the visitor it is not connected yet.
 
