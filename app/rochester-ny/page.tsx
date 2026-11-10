@@ -23,6 +23,7 @@ export default function Page() {
       isHub
       path={path}
       name="Rochester, NY"
+      serviceName="Digital Marketing in Rochester, NY"
       serviceType="Digital marketing agency"
       description={description}
       eyebrow="Rochester, NY"

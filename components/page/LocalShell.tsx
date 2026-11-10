@@ -6,15 +6,15 @@ import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, type Crumb } from "@/lib/se
 
 /** Frame for the Rochester pages. Body content is unique per page. */
 export function LocalShell({
-  path, name, serviceType, description, eyebrow, title, lead, visual, faqs, children, ctaTitle, isHub,
+  path, name, serviceName, serviceType, description, eyebrow, title, lead, visual, faqs, children, ctaTitle, isHub,
 }: {
-  path: string; name: string; serviceType: string; description: string; eyebrow: string; title: ReactNode; lead: ReactNode;
+  path: string; name: string; serviceName?: string; serviceType: string; description: string; eyebrow: string; title: ReactNode; lead: ReactNode;
   visual?: ReactNode; faqs: { q: string; a: string }[]; children: ReactNode; ctaTitle?: string; isHub?: boolean;
 }) {
   const crumbs: Crumb[] = [{ name: "Home", path: "/" }, ...(isHub ? [] : [{ name: "Rochester, NY", path: "/rochester-ny/" }]), { name, path }];
   return (
     <>
-      <JsonLd data={[serviceJsonLd({ path, name, description, serviceType }), breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
+      <JsonLd data={[serviceJsonLd({ path, name: serviceName ?? name, description, serviceType }), breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
       <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length + 3} />
       {children}
       <Section id="faq" eyebrow="Questions" title="Rochester questions, answered">

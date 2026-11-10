@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <LocalShell
       path={path}
-      name="Social Media Marketing Rochester NY"
+      name="Social Media Marketing in Rochester, NY"
       serviceType="Social media marketing"
       description={description}
       eyebrow="Rochester, NY · Social media"

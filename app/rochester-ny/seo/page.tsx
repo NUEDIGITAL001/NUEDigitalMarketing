@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <LocalShell
       path={path}
-      name="SEO Rochester NY"
+      name="SEO in Rochester, NY"
       serviceType="Local SEO services"
       description={description}
       eyebrow="Rochester, NY · SEO"
