@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import { Opening } from "@/components/home/Opening";
 import { Challenge } from "@/components/home/Challenge";
 import { Difference } from "@/components/home/Difference";
@@ -14,12 +15,7 @@ const title = `Rochester, NY Marketing Agency & Growth Consultancy · ${site.nam
 const description =
   "NÜE Digital is a Rochester, NY marketing agency and growth consultancy. Strategy, SEO, AI search, paid media, social and websites, connected and measured.";
 
-export const metadata: Metadata = {
-  title: { absolute: title },
-  description,
-  alternates: { canonical: "/" },
-  openGraph: { title, description, url: "/" },
-};
+export const metadata: Metadata = pageMeta({ path: "/", title, description });
 
 export default function Home() {
   return (

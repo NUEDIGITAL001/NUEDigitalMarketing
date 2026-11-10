@@ -8,6 +8,7 @@ import { reduceMotionBootScript } from "@/components/layout/ReduceMotionToggle";
 import { CtaTracker } from "@/components/layout/CtaTracker";
 import { site } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/seo";
+import { ogImage } from "@/lib/meta";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -41,7 +42,9 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     url: "/",
+    images: [ogImage],
   },
+  twitter: { card: "summary_large_image", images: [ogImage.url] },
   robots: { index: true, follow: true },
 };
 
