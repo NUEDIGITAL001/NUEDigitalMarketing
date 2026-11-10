@@ -17,16 +17,40 @@ export function SiteHeader() {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
+    // Hide on scroll down, show on scroll up, but only after a deliberate
+    // run in one direction. Mouse wheels and pinned scenes produce small
+    // back-and-forth movements that would otherwise make the header flicker.
+    const THRESHOLD = 64;
+    let anchor = window.scrollY;
+    let dir = 0;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       const y = window.scrollY;
       setScrolled(y > 80);
-      setHidden(y > 240 && y > lastY.current + 4);
-      if (y < lastY.current - 4) setHidden(false);
+      if (y < 240) {
+        setHidden(false);
+        anchor = y;
+      } else {
+        const d = Math.sign(y - lastY.current);
+        if (d !== 0 && d !== dir) {
+          dir = d;
+          anchor = lastY.current;
+        }
+        if (y - anchor > THRESHOLD) setHidden(true);
+        else if (anchor - y > THRESHOLD) setHidden(false);
+      }
       lastY.current = y;
     };
-    onScroll();
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   const close = useCallback(() => setOpen(null), []);
@@ -69,7 +93,7 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-(--dur-ui) ease-(--ease-out-expo) ${
         hidden && !open && !drawer ? "-translate-y-full" : "translate-y-0"
-      } ${solid ? "bg-carbon/95 border-b border-graphite backdrop-blur-sm" : "bg-transparent border-b border-transparent"}`}
+      } ${solid ? "bg-carbon/97 border-b border-graphite" : "bg-transparent border-b border-transparent"}`}
     >
       <nav ref={navRef} aria-label="Primary" className="container-nue flex h-18 items-center justify-between gap-6">
         <Link href="/" aria-label="NÜE Digital home" className="shrink-0" onClick={close}>

@@ -127,7 +127,6 @@ export function HomeMotion() {
             end: "+=160%",
             pin: true,
             scrub: 0.6,
-            anticipatePin: 1,
           },
         });
         items.forEach((_, i) => {
@@ -151,8 +150,7 @@ export function HomeMotion() {
                 pin: true,
                 scrub: 0.6,
                 invalidateOnRefresh: true,
-                anticipatePin: 1,
-              },
+                  },
             })
             .to(track, { x: () => -distance() }, 0)
             .fromTo("[data-method-progress]", { scaleX: 0 }, { scaleX: 1 }, 0);
