@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/industries/manufacturing-industrial/";
 const description =
-  "Manufacturing and industrial B2B marketing from NÜE Digital: technical content, capability pages, LinkedIn and search that reach engineers and buyers through long sales cycles.";
+  "Manufacturing and industrial B2B marketing from NÜE Digital: technical content, capability pages, LinkedIn and search that reach engineers and buyers.";
 export const metadata = pageMeta({ path, title: "Manufacturing and Industrial B2B Marketing · NÜE Digital", description });
 
 const faqs = [

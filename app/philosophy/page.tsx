@@ -8,7 +8,7 @@ const path = "/philosophy/";
 export const metadata = pageMeta({
   path,
   title: "Our Philosophy · NÜE Digital",
-  description: "What NÜE Digital believes about marketing: strategy before tactics, outcomes over activity, honest measurement and work we are proud of. When our different is better, we win.",
+  description: "What NÜE Digital believes: strategy before tactics, outcomes over activity, honest measurement and work we’re proud of. When our different is better, we win.",
 });
 
 const beliefs = [

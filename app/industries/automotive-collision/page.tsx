@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/industries/automotive-collision/";
 const description =
-  "Automotive and collision repair marketing from NÜE Digital: local SEO, reviews and websites that help auto repair shops, body shops and dealerships earn trust at a stressful moment.";
+  "Marketing for auto repair shops, collision centers and dealerships from NÜE Digital: local SEO, reviews and websites that earn drivers’ trust.";
 export const metadata = pageMeta({ path, title: "Automotive and Collision Repair Marketing · NÜE Digital", description });
 
 const faqs = [

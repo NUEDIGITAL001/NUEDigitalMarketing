@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/website-design/";
 const description =
-  "Website design and development from NÜE Digital: fast, accessible, search-ready websites built to turn visitors into inquiries. Redesigns and new builds for growing businesses.";
+  "Website design and development from NÜE Digital: fast, accessible, search-ready websites and redesigns built to turn visitors into inquiries.";
 export const metadata = pageMeta({ path, title: "Website Design and Development for Growth · NÜE Digital", description });
 
 const faqs = [

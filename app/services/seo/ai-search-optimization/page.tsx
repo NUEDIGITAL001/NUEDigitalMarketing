@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/seo/ai-search-optimization/";
 const description =
-  "AI search optimization from NÜE Digital: answer engine optimization (AEO) and generative engine optimization (GEO) so AI Overviews, ChatGPT and other assistants understand and cite your business.";
+  "AI search optimization (AEO and GEO) from NÜE Digital, so Google AI Overviews, ChatGPT and other AI assistants understand and cite your business.";
 export const metadata = pageMeta({ path, title: "AI Search Optimization: AEO and GEO Services · NÜE Digital", description });
 
 const faqs = [

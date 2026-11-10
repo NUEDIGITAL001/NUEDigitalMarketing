@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/rochester-ny/seo/";
 const description =
-  "SEO company in Rochester, NY. NÜE Digital helps Rochester businesses win local search, the map pack and AI answers with local SEO, Google Business Profile management and content.";
+  "SEO company in Rochester, NY. NÜE Digital helps local businesses win Google search, the map pack and AI answers with local SEO and Business Profile work.";
 export const metadata = pageMeta({ path, title: "SEO Company in Rochester, NY · Local SEO · NÜE Digital", description });
 
 const faqs = [

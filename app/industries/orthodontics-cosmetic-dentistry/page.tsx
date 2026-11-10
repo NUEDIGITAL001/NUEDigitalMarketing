@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/industries/orthodontics-cosmetic-dentistry/";
 const description =
-  "Orthodontic and cosmetic dentistry marketing from NÜE Digital: nurture campaigns, before-and-after content, Invisalign and treatment pages that convert long consideration into consults.";
+  "Orthodontic and cosmetic dentistry marketing from NÜE Digital: Invisalign and treatment pages, before-and-afters and nurture that turn interest into consults.";
 export const metadata = pageMeta({ path, title: "Orthodontic and Cosmetic Dentistry Marketing · NÜE Digital", description });
 
 const faqs = [

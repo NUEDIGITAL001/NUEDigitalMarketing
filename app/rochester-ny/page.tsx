@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/rochester-ny/";
 const description =
-  "NÜE Digital is a Rochester, NY digital marketing agency and growth consultancy. Strategy, SEO, social media, websites and paid ads for businesses across Rochester and Western New York.";
+  "NÜE Digital is a Rochester, NY digital marketing agency and growth consultancy: strategy, SEO, social, websites and paid ads across Western New York.";
 export const metadata = pageMeta({ path, title: "Digital Marketing Agency in Rochester, NY · NÜE Digital", description });
 
 const faqs = [

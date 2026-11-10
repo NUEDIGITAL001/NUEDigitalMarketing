@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/ai-marketing-automation/";
 const description =
-  "AI marketing automation and CRM workflows from NÜE Digital in Rochester, NY. Instant lead response, follow-up, routing and reporting that save time without losing the human touch.";
+  "AI marketing automation and CRM workflows from NÜE Digital: instant lead response, follow-up, routing and reporting, without losing the human touch.";
 export const metadata = pageMeta({ path, title: "AI Marketing Automation and CRM Workflows · NÜE Digital", description });
 
 const faqs = [

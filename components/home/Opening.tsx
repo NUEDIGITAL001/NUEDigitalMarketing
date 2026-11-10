@@ -32,6 +32,7 @@ export function Opening() {
               <span className="block overflow-hidden pb-[0.06em]">
                 <span data-hero-line className="block">Built for</span>
               </span>
+              {" "}
               <span className="block overflow-hidden pb-[0.06em]">
                 <span data-hero-line className="block">
                   what&rsquo;s next<span className="text-teal">.</span>

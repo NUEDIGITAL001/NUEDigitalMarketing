@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/seo/";
 const description =
-  "SEO services from NÜE Digital: technical SEO, content and authority work built on strategy and measured by leads. Based in Rochester, NY, serving businesses across the Eastern US.";
+  "SEO services from NÜE Digital in Rochester, NY: technical SEO, content and authority work built on strategy and measured by leads, not rankings.";
 export const metadata = pageMeta({ path, title: "SEO Services Built on Strategy and Measurement · NÜE Digital", description });
 
 const faqs = [

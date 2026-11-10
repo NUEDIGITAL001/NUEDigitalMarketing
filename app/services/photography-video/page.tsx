@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/photography-video/";
 const description =
-  "Commercial photography and video for NÜE Digital clients in Rochester, NY: website imagery, team portraits, social video and ad creative, included in creative services packages.";
+  "Commercial photography and video for NÜE Digital clients in Rochester, NY: website imagery, team portraits, social video and ad creative.";
 export const metadata = pageMeta({ path, title: "Commercial Photography and Video in Rochester, NY · NÜE Digital", description });
 
 const faqs = [

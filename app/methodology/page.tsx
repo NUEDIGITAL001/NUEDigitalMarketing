@@ -9,7 +9,7 @@ const path = "/methodology/";
 export const metadata = pageMeta({
   path,
   title: "The NÜE Methodology: Discover, Strategize, Execute, Optimize",
-  description: "How NÜE Digital works: a four-phase marketing process that starts with the business, sets clear priorities, executes with the right specialists and optimizes on real results.",
+  description: "How NÜE Digital works: a four-phase marketing process to discover, strategize, execute with the right specialists and optimize on real results.",
 });
 
 const phases = [

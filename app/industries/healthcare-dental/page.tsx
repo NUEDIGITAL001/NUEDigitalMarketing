@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/industries/healthcare-dental/";
 const description =
-  "Dental and healthcare practice marketing from NÜE Digital: local SEO, Google Business Profile, reviews and patient-friendly websites that fill schedules with the right patients.";
+  "Dental and healthcare practice marketing from NÜE Digital: local SEO, Google Business Profile, reviews and websites that bring in the right patients.";
 export const metadata = pageMeta({ path, title: "Healthcare and Dental Practice Marketing · NÜE Digital", description });
 
 const faqs = [

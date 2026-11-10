@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/rochester-ny/website-design/";
 const description =
-  "Website design in Rochester, NY from NÜE Digital: fast, search-ready, accessible websites for Rochester businesses, designed and built to turn visitors into customers.";
+  "Website design in Rochester, NY from NÜE Digital: fast, search-ready, accessible websites built to turn local visitors into customers.";
 export const metadata = pageMeta({ path, title: "Website Design in Rochester, NY · NÜE Digital", description });
 
 const faqs = [

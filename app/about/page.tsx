@@ -9,7 +9,7 @@ const path = "/about/";
 export const metadata = pageMeta({
   path,
   title: "About NÜE Digital · Marketing + Consultancy, Rochester NY",
-  description: "About NÜE Digital: a Rochester, NY marketing and growth consultancy with several decades of combined experience in digital marketing and paid advertising, plus a network of creators.",
+  description: "About NÜE Digital: a Rochester, NY marketing and growth consultancy with decades of combined experience in digital marketing, plus a network of creators.",
 });
 
 export default function Page() {

@@ -10,7 +10,7 @@ import { HomeMotion } from "@/components/home/HomeMotion";
 import { webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
-const title = `${site.name} · Marketing Agency & Growth Consultancy in Rochester, NY`;
+const title = `Rochester, NY Marketing Agency & Growth Consultancy · ${site.name}`;
 const description =
   "NÜE Digital is a Rochester, NY marketing agency and growth consultancy. Strategy, SEO, AI search, paid media, social and websites, connected and measured.";
 

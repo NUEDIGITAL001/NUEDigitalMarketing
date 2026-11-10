@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/reputation-management/";
 const description =
-  "Online reputation and review management from NÜE Digital. A steady flow of genuine reviews, thoughtful responses and monitoring that builds trust in search and AI answers.";
+  "Online reputation and review management from NÜE Digital: a steady flow of genuine reviews, thoughtful responses and monitoring that builds trust.";
 export const metadata = pageMeta({ path, title: "Online Reputation and Review Management · NÜE Digital", description });
 
 const faqs = [

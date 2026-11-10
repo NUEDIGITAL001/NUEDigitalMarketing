@@ -10,7 +10,7 @@ const path = "/industries/";
 export const metadata = pageMeta({
   path,
   title: "Industries We Serve · NÜE Digital",
-  description: "Marketing for healthcare and dental, orthodontics, veterinary, home services, automotive, manufacturing and hospitality businesses, from NÜE Digital in Rochester, NY.",
+  description: "Marketing for healthcare, dental, veterinary, home services, automotive, manufacturing and hospitality businesses, from NÜE Digital in Rochester, NY.",
 });
 
 export default function Page() {

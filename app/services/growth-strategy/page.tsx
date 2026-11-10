@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/services/growth-strategy/";
 const description =
-  "Growth strategy and business development consulting from NÜE Digital in Rochester, NY. Clear priorities, positioning and a marketing plan tied to revenue, not activity.";
+  "Growth strategy and business development consulting from NÜE Digital in Rochester, NY: clear priorities and a marketing plan tied to revenue.";
 export const metadata = pageMeta({ path, title: "Growth Strategy and Business Development Consulting · NÜE Digital", description });
 
 const faqs = [

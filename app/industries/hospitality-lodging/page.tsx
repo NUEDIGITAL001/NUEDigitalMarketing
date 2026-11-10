@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/industries/hospitality-lodging/";
 const description =
-  "Hotel and hospitality marketing from NÜE Digital: direct booking strategy, search, social and email for hotels, inns, B&Bs and venues that want to rely less on OTAs.";
+  "Hotel and hospitality marketing from NÜE Digital: direct booking strategy, search, social and email for hotels, inns, B&Bs and venues.";
 export const metadata = pageMeta({ path, title: "Hospitality and Lodging Marketing · NÜE Digital", description });
 
 const faqs = [

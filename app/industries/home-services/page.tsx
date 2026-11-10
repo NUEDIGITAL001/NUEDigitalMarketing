@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/industries/home-services/";
 const description =
-  "Marketing for home services and skilled trades from NÜE Digital: HVAC, plumbing, roofing, electrical and contractors. Local SEO, Google Ads and fast lead response that win the job.";
+  "Marketing for HVAC, plumbing, roofing, electrical and other home service businesses: local SEO, Google Ads and fast lead response that win the job.";
 export const metadata = pageMeta({ path, title: "Marketing for Home Services and Skilled Trades · NÜE Digital", description });
 
 const faqs = [

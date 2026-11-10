@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/meta";
 
 const path = "/rochester-ny/social-media-marketing/";
 const description =
-  "Social media marketing in Rochester, NY from NÜE Digital: local content, community engagement and targeted social ads that reach customers across Rochester and Western New York.";
+  "Social media marketing in Rochester, NY from NÜE Digital: local content, community engagement and targeted social ads across Western New York.";
 export const metadata = pageMeta({ path, title: "Social Media Marketing in Rochester, NY · NÜE Digital", description });
 
 const faqs = [
