@@ -17,7 +17,7 @@ Copy `.env.example` to `.env.local`. Never commit real values.
 | Variable | Purpose |
 | --- | --- |
 | `RESEND_API_KEY` | Resend API key used by the contact form |
-| `CONTACT_TO_EMAIL` | Private inbox that receives inquiries. Server-only, never shown on the site Separate several addresses with commas. |
+| `CONTACT_TO_EMAIL` | Private inbox that receives inquiries. Server-only, never shown on the site. Separate several addresses with commas. |
 | `CONTACT_FROM_EMAIL` | Optional. Defaults to `NÜE Digital Website <website@mail.nuedigitalmarketing.com>` (the verified Resend domain) |
 | `NEXT_PUBLIC_GTM_ID` | Google Tag Manager container. Defaults to GTM-T6DQ49C2; set to `off` to disable |
 
