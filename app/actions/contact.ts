@@ -53,7 +53,7 @@ export async function submitContact(_prev: ContactState, formData: FormData): Pr
 
   const key = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "NÜE Digital Website <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL || "NÜE Digital Website <website@mail.nuedigitalmarketing.com>";
   if (!key || !to) {
     console.error("[contact] RESEND_API_KEY or CONTACT_TO_EMAIL is not configured");
     return {
