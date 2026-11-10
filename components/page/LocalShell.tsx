@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { PageHero } from "./PageHero";
-import { CtaBand, FaqList, Section } from "./Blocks";
+import { CtaBand, FaqList, Section, StatementBand, Ticker } from "./Blocks";
+import { statements } from "@/lib/statements";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, type Crumb } from "@/lib/seo";
 
@@ -16,8 +17,10 @@ export function LocalShell({
     <>
       <JsonLd data={[serviceJsonLd({ path, name: serviceName ?? name, description, serviceType }), breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
       <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length + 3} />
+      <Ticker items={["Rochester", "Monroe County", "Western New York", "Strategy", "SEO", "Social Media", "Websites", "Paid Ads"]} />
       {children}
-      <Section id="faq" eyebrow="Questions" title="Rochester questions, answered">
+      {statements[path] && <StatementBand>{statements[path]}</StatementBand>}
+      <Section id="faq" eyebrow="Questions" title="Rochester questions, answered" tone="light">
         <FaqList faqs={faqs} />
       </Section>
       <CtaBand title={ctaTitle ?? "Let’s meet. Rochester is home."} lead="We work with businesses across Rochester and Western New York in person. Tell us about yours and we’ll set up a time to talk." source={path} />

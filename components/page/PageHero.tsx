@@ -27,6 +27,11 @@ export function PageHero({
         <ContourField className="h-full w-full" seed={seed} highlight={[3]} lines={14} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(8_10_12/0.95)_0%,rgb(8_10_12/0.7)_55%,rgb(8_10_12/0.3)_100%)]" />
       </div>
+      <div aria-hidden="true" className="hero-aurora absolute inset-0 -z-10">
+        <span className="aurora-a" />
+        <span className="aurora-b" />
+        <span className="hero-grid" />
+      </div>
       <div className="container-nue pb-16 pt-36 lg:pb-24 lg:pt-44">
         <nav aria-label="Breadcrumb">
           <ol className="mono-data flex flex-wrap items-center gap-2 text-titanium-light">
@@ -49,7 +54,7 @@ export function PageHero({
             {lead && <div className="body-l measure mt-8 text-concrete">{lead}</div>}
             {children}
           </div>
-          {aside && <div className="lg:col-span-5">{aside}</div>}
+          {aside && <div className="hero-aside lg:col-span-5">{aside}</div>}
         </div>
       </div>
     </section>

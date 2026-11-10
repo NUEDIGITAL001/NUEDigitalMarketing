@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { reduceMotionBootScript } from "@/components/layout/ReduceMotionToggle";
 import { CtaTracker } from "@/components/layout/CtaTracker";
+import { RevealObserver } from "@/components/page/RevealObserver";
 import { site } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/seo";
 import { ogImage } from "@/lib/meta";
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main id="main">{children}</main>
         <SiteFooter />
         <CtaTracker />
+        <RevealObserver />
         {GTM_ID && (
           <Script id="gtm" strategy="afterInteractive">
             {`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=document.getElementsByTagName('script')[0],j=document.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${GTM_ID}';f.parentNode.insertBefore(j,f);`}

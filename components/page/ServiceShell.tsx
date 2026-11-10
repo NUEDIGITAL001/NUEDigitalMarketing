@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { PageHero } from "./PageHero";
-import { CtaBand, FaqList, LinkGrid, Section } from "./Blocks";
+import { CtaBand, FaqList, LinkGrid, Section, StatementBand, Ticker } from "./Blocks";
+import { statements } from "@/lib/statements";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, type Crumb } from "@/lib/seo";
 import { services, industries, type NavLink } from "@/lib/site";
@@ -52,8 +53,10 @@ export function ServiceShell({
     <>
       <JsonLd data={[serviceJsonLd({ path, name, description, serviceType }), breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
       <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length} />
+      <Ticker items={[name, ...relatedLinks.map((l) => l.label)]} />
       {children}
-      <Section id="faq" eyebrow="Questions" title="Straight answers" tone="obsidian">
+      {statements[path] && <StatementBand>{statements[path]}</StatementBand>}
+      <Section id="faq" eyebrow="Questions" title="Straight answers" tone="light">
         <FaqList faqs={faqs} />
       </Section>
       {relatedLinks.length > 0 && (
