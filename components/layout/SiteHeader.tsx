@@ -65,6 +65,7 @@ export function SiteHeader() {
   const solid = scrolled || open !== null;
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-(--dur-ui) ease-(--ease-out-expo) ${
         hidden && !open && !drawer ? "-translate-y-full" : "translate-y-0"
@@ -128,9 +129,10 @@ export function SiteHeader() {
           </button>
         </div>
       </nav>
-
-      <MobileDrawer open={drawer} onClose={() => setDrawer(false)} />
     </header>
+    {/* Outside <header>: its transform would otherwise trap this fixed panel */}
+    <MobileDrawer open={drawer} onClose={() => setDrawer(false)} />
+    </>
   );
 }
 
@@ -232,7 +234,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
     <div
       id="mobile-drawer"
       hidden={!open}
-      className="fixed inset-x-0 top-18 bottom-0 overflow-y-auto border-t border-graphite bg-obsidian lg:hidden"
+      className="fixed inset-x-0 top-18 bottom-0 z-40 overflow-y-auto border-t border-graphite bg-obsidian lg:hidden"
     >
       <div className="container-nue flex min-h-full flex-col py-8">
         <DrawerGroup title="Services" links={services} onClose={onClose} />
