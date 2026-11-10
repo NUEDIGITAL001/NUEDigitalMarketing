@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import { PageHero } from "./PageHero";
-import { CtaBand, FaqList, LinkGrid, Section, StatementBand, Ticker } from "./Blocks";
+import { CtaBand, FaqList, LinkGrid, Section, StatementBand } from "./Blocks";
 import { statements } from "@/lib/statements";
+import { sceneKinds } from "@/lib/scenes";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, type Crumb } from "@/lib/seo";
 import { services, industries, type NavLink } from "@/lib/site";
@@ -49,13 +50,15 @@ export function ServiceShell({
   const hub: Crumb = kind === "service" ? { name: "Services", path: "/services/" } : { name: "Industries", path: "/industries/" };
   const crumbs: Crumb[] = [{ name: "Home", path: "/" }, hub, ...(parent ? [parent] : []), { name, path }];
   const relatedLinks = related.map((h) => all.find((l) => l.href === h)).filter(Boolean) as NavLink[];
+  const idx = Math.max(0, all.findIndex((l) => l.href === path));
+  const heroScene = sceneKinds[idx % sceneKinds.length];
+  const bandScene = sceneKinds[(idx + 3) % sceneKinds.length];
   return (
     <>
       <JsonLd data={[serviceJsonLd({ path, name, description, serviceType }), breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
-      <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length} />
-      <Ticker items={[name, ...relatedLinks.map((l) => l.label)]} />
+      <PageHero crumbs={crumbs} eyebrow={eyebrow} title={title} lead={lead} aside={visual} seed={path.length} scene={heroScene} />
       {children}
-      {statements[path] && <StatementBand>{statements[path]}</StatementBand>}
+      {statements[path] && <StatementBand scene={bandScene}>{statements[path]}</StatementBand>}
       <Section id="faq" eyebrow="Questions" title="Straight answers" tone="light">
         <FaqList faqs={faqs} />
       </Section>

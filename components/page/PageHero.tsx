@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Crumb } from "@/lib/seo";
-import { ContourField } from "@/components/brand/ContourField";
+import { SceneCanvas } from "@/components/scenes/SceneCanvas";
+import { sceneKinds, type SceneKind } from "@/lib/scenes";
 
 /** Interior page hero with breadcrumbs. Static (no motion dependency). */
 export function PageHero({
@@ -12,6 +13,7 @@ export function PageHero({
   children,
   aside,
   seed = 5,
+  scene,
 }: {
   crumbs: Crumb[];
   eyebrow: string;
@@ -20,19 +22,18 @@ export function PageHero({
   children?: ReactNode;
   aside?: ReactNode;
   seed?: number;
+  /** Animated backdrop. Defaults to one picked from the seed so pages differ. */
+  scene?: SceneKind;
 }) {
+  const kind = scene ?? sceneKinds[seed % sceneKinds.length];
   return (
     <section className="relative isolate overflow-hidden border-b border-graphite bg-obsidian">
-      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-50">
-        <ContourField className="h-full w-full" seed={seed} highlight={[3]} lines={14} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(8_10_12/0.95)_0%,rgb(8_10_12/0.7)_55%,rgb(8_10_12/0.3)_100%)]" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10">
+        <SceneCanvas kind={kind} className="scene-drift absolute inset-0 h-full w-full" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(8_10_12/0.94)_0%,rgb(8_10_12/0.72)_42%,rgb(8_10_12/0.12)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,transparent,rgb(8_10_12/0.9))]" />
       </div>
-      <div aria-hidden="true" className="hero-aurora absolute inset-0 -z-10">
-        <span className="aurora-a" />
-        <span className="aurora-b" />
-        <span className="hero-grid" />
-      </div>
-      <div className="container-nue pb-16 pt-36 lg:pb-24 lg:pt-44">
+      <div className="container-nue flex min-h-[78svh] flex-col justify-center pb-16 pt-36 lg:pb-24 lg:pt-44">
         <nav aria-label="Breadcrumb">
           <ol className="mono-data flex flex-wrap items-center gap-2 text-titanium-light">
             {crumbs.map((c, i) => (

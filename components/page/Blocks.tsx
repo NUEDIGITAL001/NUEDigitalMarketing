@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { EMotif } from "@/components/brand/EMotif";
 import { Motif } from "./Motifs";
+import { SceneCanvas } from "@/components/scenes/SceneCanvas";
+import type { SceneKind } from "@/lib/scenes";
 
 const toneClass = { obsidian: "bg-obsidian", carbon: "bg-carbon", light: "tone-light" } as const;
 
@@ -111,38 +113,15 @@ export function LinkGrid({ links }: { links: { label: string; href: string; blur
   );
 }
 
-/** Scrolling band of related terms. Decorative: the same links appear in the page body. */
-export function Ticker({ items }: { items: string[] }) {
-  const row = [...items, ...items, ...items];
+/** Immersive full-bleed scene carrying the one line that sums the page up. */
+export function StatementBand({ children, scene = "tunnel" }: { children: ReactNode; scene?: SceneKind }) {
   return (
-    <div aria-hidden="true" className="ticker overflow-hidden border-b border-graphite bg-teal py-4 text-obsidian">
-      <div className="ticker-track flex w-max gap-10 whitespace-nowrap font-display text-sm font-semibold uppercase tracking-[0.2em]">
-        {[0, 1].map((k) => (
-          <div key={k} className="flex shrink-0 gap-10">
-            {row.map((t, i) => (
-              <span key={i} className="flex items-center gap-10">
-                {t}
-                <span className="inline-block h-1.5 w-4 bg-obsidian" />
-              </span>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Full-width teal band carrying one line that sums the page up. */
-export function StatementBand({ children }: { children: ReactNode }) {
-  return (
-    <section aria-label="In short" className="relative isolate overflow-hidden bg-teal text-obsidian">
-      <svg aria-hidden="true" viewBox="0 0 313 302" preserveAspectRatio="xMaxYMid meet" className="statement-bars absolute inset-y-0 right-(--gutter) -z-10 my-auto hidden h-[62%] md:block">
-        <rect x="0" y="0" width="313" height="63" fill="rgb(8 10 12 / 0.16)" />
-        <rect x="0" y="120" width="299" height="63" fill="rgb(255 255 255 / 0.55)" />
-        <rect x="0" y="239" width="313" height="63" fill="rgb(8 10 12 / 0.16)" />
-      </svg>
-      <div className="container-nue py-20 lg:py-28">
-        <p data-reveal className="max-w-[20ch] font-display text-[clamp(2rem,1.2rem+3.2vw,4.25rem)] font-bold uppercase leading-[1.02] tracking-[-0.015em] md:max-w-[62%]">
+    <section aria-label="In short" className="statement relative isolate flex min-h-[86svh] items-center overflow-hidden border-b border-graphite bg-obsidian">
+      <SceneCanvas kind={scene} className="absolute inset-0 -z-20 h-full w-full" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(80%_70%_at_30%_50%,rgb(8_10_12/0.62),rgb(8_10_12/0.12)_70%,transparent)]" />
+      <div className="container-nue py-24">
+        <p className="statement-kicker eyebrow">In short</p>
+        <p className="statement-line mt-6 max-w-[16ch] font-display text-[clamp(2.5rem,1.2rem+5.4vw,6.5rem)] font-bold uppercase leading-[0.98] tracking-[-0.02em] text-white">
           {children}
         </p>
       </div>
@@ -154,6 +133,7 @@ export function StatementBand({ children }: { children: ReactNode }) {
 export function CtaBand({ title = "Let’s talk about what’s next.", lead, source }: { title?: string; lead?: string; source: string }) {
   return (
     <section aria-labelledby="cta-title" className="cta-glow relative isolate overflow-hidden bg-carbon">
+      <SceneCanvas kind="bars" className="absolute inset-0 -z-10 h-full w-full opacity-40" />
       <div className="container-nue section-m">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
@@ -165,7 +145,7 @@ export function CtaBand({ title = "Let’s talk about what’s next.", lead, sou
             </p>
           </div>
           <div className="lg:col-span-7">
-            <div className="ticks border border-graphite bg-obsidian/70 p-6 md:p-10">
+            <div className="glass ticks border border-graphite bg-obsidian/80 p-6 md:p-10">
               <ContactForm source={source} />
             </div>
           </div>
