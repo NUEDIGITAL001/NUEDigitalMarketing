@@ -12,7 +12,7 @@ export function Measurement() {
       id="scene-measurement"
       data-scene="06-measurement"
       aria-labelledby="measure-title"
-      className="relative overflow-hidden border-t border-graphite bg-obsidian"
+      className="cta-glow relative isolate overflow-hidden border-t border-graphite bg-obsidian"
     >
       <div className="container-nue section-l">
         <div className="grid gap-10 lg:grid-cols-12">
@@ -27,7 +27,8 @@ export function Measurement() {
             </p>
           </div>
 
-          <figure className="ticks border border-graphite bg-carbon/40 p-6 lg:col-span-7 lg:p-8" data-reveal>
+          <figure className="glass ticks relative overflow-hidden border border-graphite bg-carbon/40 p-6 lg:col-span-7 lg:p-8" data-reveal>
+            <span aria-hidden="true" className="flow-line" />
             <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-4">
               {columns.map((c, ci) => (
                 <div key={c.label} className="relative">
@@ -39,7 +40,7 @@ export function Measurement() {
                       <li
                         key={it}
                         data-measure-item
-                        className="border border-graphite bg-obsidian px-3 py-2 text-sm text-white"
+                        className="border border-graphite border-l-2 border-l-teal bg-obsidian px-3 py-2 text-sm text-white"
                       >
                         {it}
                       </li>

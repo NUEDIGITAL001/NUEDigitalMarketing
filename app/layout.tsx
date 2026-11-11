@@ -6,8 +6,10 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { reduceMotionBootScript } from "@/components/layout/ReduceMotionToggle";
 import { CtaTracker } from "@/components/layout/CtaTracker";
+import { RevealObserver } from "@/components/page/RevealObserver";
 import { site } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/seo";
+import { ogImage } from "@/lib/meta";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -41,7 +43,9 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_US",
     url: "/",
+    images: [ogImage],
   },
+  twitter: { card: "summary_large_image", images: [ogImage.url] },
   robots: { index: true, follow: true },
 };
 
@@ -50,7 +54,9 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+/** Google Tag Manager container. Public by design; override with NEXT_PUBLIC_GTM_ID, or set it to "off" to disable. */
+const GTM_ENV = process.env.NEXT_PUBLIC_GTM_ID;
+const GTM_ID = GTM_ENV === "off" ? undefined : GTM_ENV || "GTM-T6DQ49C2";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -67,11 +73,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body>
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+              title="Google Tag Manager"
+            />
+          </noscript>
+        )}
         <a href="#main" className="skip-link">Skip to content</a>
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
         <CtaTracker />
+        <RevealObserver />
         {GTM_ID && (
           <Script id="gtm" strategy="afterInteractive">
             {`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=document.getElementsByTagName('script')[0],j=document.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${GTM_ID}';f.parentNode.insertBefore(j,f);`}

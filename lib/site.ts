@@ -10,6 +10,10 @@ export const site = {
   tagline: "Built for what's next.",
   url: "https://nuedigitalmarketing.com",
   location: "Rochester, NY",
+  email: "nuedigitalmarketing@gmail.com",
+  /** Public phone number in E.164 form (used for tel: links and schema). */
+  phone: "+15853407290" as string,
+  phoneDisplay: "(585) 340-7290",
   serviceArea:
     "Rochester and Western New York in person; clients across the Eastern US remotely.",
   description:

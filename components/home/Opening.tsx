@@ -3,6 +3,7 @@ import { ContourField } from "@/components/brand/ContourField";
 import { LightTrail } from "@/components/brand/LightTrail";
 import { EMotif } from "@/components/brand/EMotif";
 import { ButtonLink } from "@/components/ui/Button";
+import { SceneCanvas } from "@/components/scenes/SceneCanvas";
 
 /** Scene 01, The Opening. Full viewport, not pinned. */
 export function Opening() {
@@ -20,6 +21,7 @@ export function Opening() {
         <div data-parallax="0.25" className="absolute inset-0 opacity-70 mix-blend-screen">
           <ContourField className="h-full w-full" seed={2} highlight={[4]} lines={16} />
         </div>
+        <SceneCanvas kind="surge" className="scene-drift absolute inset-0 h-full w-full mix-blend-screen" />
         <LightTrail className="absolute inset-0 h-full w-full" id="hero-trail" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(8_10_12/0.92)_0%,rgb(8_10_12/0.55)_45%,rgb(8_10_12/0.1)_100%)]" />
       </div>
@@ -32,9 +34,10 @@ export function Opening() {
               <span className="block overflow-hidden pb-[0.06em]">
                 <span data-hero-line className="block">Built for</span>
               </span>
+              {" "}
               <span className="block overflow-hidden pb-[0.06em]">
                 <span data-hero-line className="block">
-                  what&rsquo;s next<span className="text-teal">.</span>
+                  what&rsquo;s <span className="next-glow text-teal">next.</span>
                 </span>
               </span>
             </h1>

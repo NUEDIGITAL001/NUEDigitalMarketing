@@ -52,9 +52,10 @@ export async function submitContact(_prev: ContactState, formData: FormData): Pr
   if (Object.keys(errors).length) return { status: "error", errors, values: v, message: "Please fix the highlighted fields." };
 
   const key = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "NÜE Digital Website <onboarding@resend.dev>";
-  if (!key || !to) {
+  // One address, or several separated by commas.
+  const to = (process.env.CONTACT_TO_EMAIL ?? "").split(",").map((a) => a.trim()).filter(Boolean);
+  const from = process.env.CONTACT_FROM_EMAIL || "NÜE Digital Website <website@mail.nuedigitalmarketing.com>";
+  if (!key || to.length === 0) {
     console.error("[contact] RESEND_API_KEY or CONTACT_TO_EMAIL is not configured");
     return {
       status: "error",
@@ -82,7 +83,7 @@ export async function submitContact(_prev: ContactState, formData: FormData): Pr
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from,
-        to: [to],
+        to,
         reply_to: v.email,
         subject: `Website inquiry: ${v.business} (${v.name})`,
         html,

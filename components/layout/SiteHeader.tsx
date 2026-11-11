@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { NueLogo } from "@/components/brand/NueLogo";
-import { approach, industries, services } from "@/lib/site";
+import { approach, industries, services, site } from "@/lib/site";
 
 type MenuKey = "services" | "industries" | "approach" | null;
 
@@ -17,16 +17,40 @@ export function SiteHeader() {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => {
+    // Hide on scroll down, show on scroll up, but only after a deliberate
+    // run in one direction. Mouse wheels and pinned scenes produce small
+    // back-and-forth movements that would otherwise make the header flicker.
+    const THRESHOLD = 64;
+    let anchor = window.scrollY;
+    let dir = 0;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       const y = window.scrollY;
       setScrolled(y > 80);
-      setHidden(y > 240 && y > lastY.current + 4);
-      if (y < lastY.current - 4) setHidden(false);
+      if (y < 240) {
+        setHidden(false);
+        anchor = y;
+      } else {
+        const d = Math.sign(y - lastY.current);
+        if (d !== 0 && d !== dir) {
+          dir = d;
+          anchor = lastY.current;
+        }
+        if (y - anchor > THRESHOLD) setHidden(true);
+        else if (anchor - y > THRESHOLD) setHidden(false);
+      }
       lastY.current = y;
     };
-    onScroll();
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   const close = useCallback(() => setOpen(null), []);
@@ -65,10 +89,11 @@ export function SiteHeader() {
   const solid = scrolled || open !== null;
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-(--dur-ui) ease-(--ease-out-expo) ${
         hidden && !open && !drawer ? "-translate-y-full" : "translate-y-0"
-      } ${solid ? "bg-carbon/95 border-b border-graphite backdrop-blur-sm" : "bg-transparent border-b border-transparent"}`}
+      } ${solid ? "bg-carbon/97 border-b border-graphite" : "bg-transparent border-b border-transparent"}`}
     >
       <nav ref={navRef} aria-label="Primary" className="container-nue flex h-18 items-center justify-between gap-6">
         <Link href="/" aria-label="NÜE Digital home" className="shrink-0" onClick={close}>
@@ -92,13 +117,16 @@ export function SiteHeader() {
             <MegaPanel title="Approach" cols={1} links={approach} onNavigate={close} />
           </MenuTrigger>
           <li>
-            <Link href="/insights/" className="ui-text px-4 py-2 text-concrete hover:text-white">
-              Insights
+            <Link href="/blog/" className="ui-text px-4 py-2 text-concrete hover:text-white">
+              Blog
             </Link>
           </li>
         </ul>
 
         <div className="flex items-center gap-3">
+          <a href={`tel:${site.phone}`} data-cta="header-phone" className="ui-text hidden whitespace-nowrap text-concrete hover:text-white xl:inline-flex">
+            {site.phoneDisplay}
+          </a>
           <Link
             href="/contact/"
             data-cta="header-start-conversation"
@@ -128,9 +156,10 @@ export function SiteHeader() {
           </button>
         </div>
       </nav>
-
-      <MobileDrawer open={drawer} onClose={() => setDrawer(false)} />
     </header>
+    {/* Outside <header>: its transform would otherwise trap this fixed panel */}
+    <MobileDrawer open={drawer} onClose={() => setDrawer(false)} />
+    </>
   );
 }
 
@@ -232,14 +261,14 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
     <div
       id="mobile-drawer"
       hidden={!open}
-      className="fixed inset-x-0 top-18 bottom-0 overflow-y-auto border-t border-graphite bg-obsidian lg:hidden"
+      className="fixed inset-x-0 top-18 bottom-0 z-40 overflow-y-auto border-t border-graphite bg-obsidian lg:hidden"
     >
       <div className="container-nue flex min-h-full flex-col py-8">
         <DrawerGroup title="Services" links={services} onClose={onClose} />
         <DrawerGroup title="Industries" links={industries} onClose={onClose} />
         <DrawerGroup title="Approach" links={approach} onClose={onClose} />
-        <Link href="/insights/" onClick={onClose} className="h3 border-b border-graphite py-5">
-          Insights
+        <Link href="/blog/" onClick={onClose} className="h3 border-b border-graphite py-5">
+          Blog
         </Link>
         <Link
           href="/contact/"
@@ -249,6 +278,9 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
         >
           Start a Conversation
         </Link>
+        <a href={`tel:${site.phone}`} data-cta="drawer-phone" className="ui-text mt-4 inline-flex justify-center rounded-xs border border-titanium/60 px-6 py-4 text-white">
+          Call {site.phoneDisplay}
+        </a>
       </div>
     </div>
   );
