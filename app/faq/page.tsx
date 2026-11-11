@@ -42,7 +42,7 @@ export default function Page() {
   const crumbs = [{ name: "Home", path: "/" }, { name: "FAQs", path }];
   return (
     <>
-      <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(groups.flatMap((g) => g.f))]} />
+      <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(groups.flatMap((g) => g.f), { path })]} />
       <PageHero crumbs={crumbs} eyebrow="FAQs" title="Questions about working with NÜE." lead={<p>Straight answers to what people ask us most. Don’t see yours? Ask us directly.</p>} />
       {groups.map((g, i) => (
         <Section key={g.t} id={`faq-${i}`} eyebrow={`0${i + 1}`} title={g.t} tone={i % 2 ? "carbon" : "obsidian"}>

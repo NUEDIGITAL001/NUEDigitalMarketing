@@ -776,7 +776,7 @@ const helix: Draw = (c, w, h, t) => {
   }
 };
 
-/** Insights: streams of data falling like rain on glass. */
+/** Blog: streams of data falling like rain on glass. */
 const rain: Draw = (c, w, h, t) => {
   const gap = 24;
   for (let i = 0; i * gap < w * 0.8; i++) {

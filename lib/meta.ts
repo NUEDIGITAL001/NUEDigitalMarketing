@@ -9,13 +9,22 @@ export const ogImage = {
 };
 
 /** Per-page metadata with canonical and Open Graph. `title` is the full title tag. */
-export function pageMeta({ path, title, description, noindex }: { path: string; title: string; description: string; noindex?: boolean }): Metadata {
+export function pageMeta({
+  path, title, description, noindex, image = ogImage, article,
+}: {
+  path: string; title: string; description: string; noindex?: boolean;
+  /** Link preview image. Blog posts pass their featured image. */
+  image?: { url: string; width: number; height: number; alt: string };
+  article?: { published: string; modified: string; section: string };
+}): Metadata {
   return {
     title: { absolute: title },
     description,
     alternates: { canonical: path },
-    openGraph: { type: "website", siteName: "NÜE Digital", locale: "en_US", title, description, url: path, images: [ogImage] },
-    twitter: { card: "summary_large_image", title, description, images: [ogImage.url] },
+    openGraph: article
+      ? { type: "article", siteName: "NÜE Digital", locale: "en_US", title, description, url: path, images: [image], publishedTime: article.published, modifiedTime: article.modified, section: article.section }
+      : { type: "website", siteName: "NÜE Digital", locale: "en_US", title, description, url: path, images: [image] },
+    twitter: { card: "summary_large_image", title, description, images: [image.url] },
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }

@@ -44,6 +44,12 @@ export default function Page() {
               </ol>
             </div>
             <div>
+              <h2 className="ui-text text-white">Email us directly</h2>
+              <p className="mt-4">
+                <a href={`mailto:${site.email}`} data-cta="contact-email" className="break-all text-ice underline decoration-teal underline-offset-4 hover:text-white">{site.email}</a>
+              </p>
+            </div>
+            <div>
               <h2 className="ui-text text-white">Where we work</h2>
               <p className="mt-4 text-titanium-light">{site.serviceArea}</p>
             </div>

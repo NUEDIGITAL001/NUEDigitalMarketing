@@ -19,11 +19,14 @@ export function SiteFooter() {
             >
               Start a conversation
             </Link>
+            <p className="mt-6 text-sm">
+              <a href={`mailto:${site.email}`} data-cta="footer-email" className="text-titanium-light hover:text-white">{site.email}</a>
+            </p>
           </div>
           <FooterCol title="Services" links={services} className="lg:col-span-3" />
           <FooterCol title="Industries" links={industries} className="lg:col-span-2" />
           <div className="grid gap-12 lg:col-span-3">
-            <FooterCol title="Company" links={[...approach, { label: "Insights", href: "/insights/" }, { label: "FAQs", href: "/faq/" }, { label: "Contact", href: "/contact/" }]} />
+            <FooterCol title="Company" links={[...approach, { label: "Blog", href: "/blog/" }, { label: "FAQs", href: "/faq/" }, { label: "Contact", href: "/contact/" }]} />
             <FooterCol title="Rochester, NY" links={rochester} />
           </div>
         </div>

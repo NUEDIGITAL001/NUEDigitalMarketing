@@ -117,8 +117,8 @@ export function SiteHeader() {
             <MegaPanel title="Approach" cols={1} links={approach} onNavigate={close} />
           </MenuTrigger>
           <li>
-            <Link href="/insights/" className="ui-text px-4 py-2 text-concrete hover:text-white">
-              Insights
+            <Link href="/blog/" className="ui-text px-4 py-2 text-concrete hover:text-white">
+              Blog
             </Link>
           </li>
         </ul>
@@ -264,8 +264,8 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
         <DrawerGroup title="Services" links={services} onClose={onClose} />
         <DrawerGroup title="Industries" links={industries} onClose={onClose} />
         <DrawerGroup title="Approach" links={approach} onClose={onClose} />
-        <Link href="/insights/" onClick={onClose} className="h3 border-b border-graphite py-5">
-          Insights
+        <Link href="/blog/" onClick={onClose} className="h3 border-b border-graphite py-5">
+          Blog
         </Link>
         <Link
           href="/contact/"

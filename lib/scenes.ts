@@ -41,5 +41,5 @@ export const pageScenes: Record<string, { scene: SceneKind; name: string; page: 
   "/rochester-ny/website-design/": { scene: "scaffold", name: "Scaffold", page: "Rochester Website Design" },
   "/philosophy/": { scene: "horizon", name: "Horizon", page: "Philosophy" },
   "/faq/": { scene: "helix", name: "Helix", page: "FAQs" },
-  "/insights/": { scene: "rain", name: "Data Rain", page: "Insights" },
+  "/blog/": { scene: "rain", name: "Data Rain", page: "Blog" },
 };
