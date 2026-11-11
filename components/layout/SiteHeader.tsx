@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { NueLogo } from "@/components/brand/NueLogo";
-import { approach, industries, services } from "@/lib/site";
+import { approach, industries, services, site } from "@/lib/site";
 
 type MenuKey = "services" | "industries" | "approach" | null;
 
@@ -124,6 +124,9 @@ export function SiteHeader() {
         </ul>
 
         <div className="flex items-center gap-3">
+          <a href={`tel:${site.phone}`} data-cta="header-phone" className="ui-text hidden whitespace-nowrap text-concrete hover:text-white xl:inline-flex">
+            {site.phoneDisplay}
+          </a>
           <Link
             href="/contact/"
             data-cta="header-start-conversation"
@@ -275,6 +278,9 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
         >
           Start a Conversation
         </Link>
+        <a href={`tel:${site.phone}`} data-cta="drawer-phone" className="ui-text mt-4 inline-flex justify-center rounded-xs border border-titanium/60 px-6 py-4 text-white">
+          Call {site.phoneDisplay}
+        </a>
       </div>
     </div>
   );

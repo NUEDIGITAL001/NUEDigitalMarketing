@@ -11,8 +11,9 @@ export const site = {
   url: "https://nuedigitalmarketing.com",
   location: "Rochester, NY",
   email: "nuedigitalmarketing@gmail.com",
-  /** Public phone number in E.164 form, e.g. "+15855550100". Empty until one is chosen. */
-  phone: "" as string,
+  /** Public phone number in E.164 form (used for tel: links and schema). */
+  phone: "+15853407290" as string,
+  phoneDisplay: "(585) 340-7290",
   serviceArea:
     "Rochester and Western New York in person; clients across the Eastern US remotely.",
   description:

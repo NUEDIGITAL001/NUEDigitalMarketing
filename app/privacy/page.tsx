@@ -23,7 +23,7 @@ export default function Page() {
         <li>You can opt out of Google Analytics with Google’s browser add-on.</li>
       </ul>
       <h2>Contact</h2>
-      <p>For any privacy request or question, use our <a href="/contact/">contact form</a> and mention “privacy” in your message.</p>
+      <p>For any privacy request or question, use our <a href="/contact/">contact form</a> and mention “privacy” in your message, or email <a href="mailto:nuedigitalmarketing@gmail.com">nuedigitalmarketing@gmail.com</a>.</p>
       <h2>Changes</h2>
       <p>We may update this policy from time to time. The date above shows when it was last changed.</p>
     </LegalPage>

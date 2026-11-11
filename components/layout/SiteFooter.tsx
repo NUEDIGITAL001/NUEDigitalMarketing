@@ -20,6 +20,9 @@ export function SiteFooter() {
               Start a conversation
             </Link>
             <p className="mt-6 text-sm">
+              <a href={`tel:${site.phone}`} data-cta="footer-phone" className="font-display text-lg font-semibold text-white hover:text-ice">{site.phoneDisplay}</a>
+            </p>
+            <p className="mt-2 text-sm">
               <a href={`mailto:${site.email}`} data-cta="footer-email" className="text-titanium-light hover:text-white">{site.email}</a>
             </p>
           </div>

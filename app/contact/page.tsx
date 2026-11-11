@@ -44,8 +44,11 @@ export default function Page() {
               </ol>
             </div>
             <div>
-              <h2 className="ui-text text-white">Email us directly</h2>
+              <h2 className="ui-text text-white">Call or email us directly</h2>
               <p className="mt-4">
+                <a href={`tel:${site.phone}`} data-cta="contact-phone" className="font-display text-2xl font-semibold text-white hover:text-ice">{site.phoneDisplay}</a>
+              </p>
+              <p className="mt-3">
                 <a href={`mailto:${site.email}`} data-cta="contact-email" className="break-all text-ice underline decoration-teal underline-offset-4 hover:text-white">{site.email}</a>
               </p>
             </div>
