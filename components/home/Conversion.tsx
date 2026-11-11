@@ -15,7 +15,7 @@ export function Conversion() {
       id="scene-conversion"
       data-scene="07-conversion"
       aria-labelledby="conversion-title"
-      className="relative isolate overflow-hidden border-t border-graphite bg-carbon"
+      className="cta-glow relative isolate overflow-hidden border-t-2 border-teal bg-carbon"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-60">
         <LightTrail className="h-full w-full" id="cta-trail" />
@@ -26,7 +26,7 @@ export function Conversion() {
             <EMotif className="conv-e h-10 w-auto text-white" />
             <p className="eyebrow mt-10" data-reveal>07 · Let&rsquo;s talk</p>
             <h2 id="conversion-title" className="display-l mt-6 uppercase" data-reveal>
-              Your next chapter starts here.
+              Your next chapter <span className="next-glow text-teal">starts here.</span>
             </h2>
             <ol className="mt-12 space-y-6">
               {next.map((s, i) => (
@@ -41,7 +41,7 @@ export function Conversion() {
             </ol>
           </div>
           <div className="lg:col-span-7">
-            <div className="ticks border border-graphite bg-obsidian/70 p-6 backdrop-blur md:p-10">
+            <div className="glass ticks border border-graphite bg-obsidian/70 p-6 md:p-10">
               <ContactForm source="home" />
             </div>
           </div>

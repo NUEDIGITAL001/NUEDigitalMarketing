@@ -3,13 +3,14 @@ export type SceneKind =
   | "trails" | "contours" | "dots" | "tunnel" | "bars" | "city"
   | "ascent" | "strata" | "neural" | "radar" | "funnel" | "orbit" | "blueprint" | "prism" | "ribbons"
   | "resonance" | "circuit" | "aperture" | "vitals" | "align" | "flock" | "rooftops" | "speed" | "lattice"
-  | "towers" | "beacon" | "signal" | "scaffold" | "horizon" | "helix" | "rain";
+  | "surge" | "towers" | "beacon" | "signal" | "scaffold" | "horizon" | "helix" | "rain";
 
 /**
  * One scene per page, never shared. The original six sit on the hub and
  * company pages; every other page has a scene drawn for its own subject.
  */
 export const pageScenes: Record<string, { scene: SceneKind; name: string; page: string }> = {
+  "/": { scene: "surge", name: "Surge", page: "Homepage" },
   "/services/": { scene: "trails", name: "A · Light Trails", page: "Services" },
   "/industries/": { scene: "contours", name: "B · Contour Field", page: "Industries" },
   "/about/": { scene: "dots", name: "C · Dot Terrain", page: "About" },

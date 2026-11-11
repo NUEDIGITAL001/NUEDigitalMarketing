@@ -397,3 +397,70 @@ html.reveal-on [data-reveal]:not(.is-in) .card-bar { transform: scaleX(0.18); }
 }
 html.reduce-motion.reveal-on [data-reveal] { opacity: 1; transform: none; }
 html.reduce-motion .motif *, html.reduce-motion .hero-aside figure, html.reduce-motion .statement-line, html.reduce-motion .statement-kicker, html.reduce-motion .scene-drift { animation: none !important; }
+
+/* ---------- Homepage impact ---------- */
+.scroll-meter {
+  position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60;
+  background: linear-gradient(90deg, var(--color-teal-deep), var(--color-teal), var(--color-ice));
+  box-shadow: 0 0 14px rgb(0 199 217 / 0.9);
+  transform-origin: left; transform: scaleX(0); pointer-events: none;
+}
+.next-glow { text-shadow: 0 0 34px rgb(0 199 217 / 0.65), 0 0 90px rgb(0 199 217 / 0.35); }
+.impact-title { font-size: clamp(3rem, 1rem + 10.5vw, 12rem); }
+.impact-slab { clip-path: polygon(0 9%, 100% 0, 100% 91%, 0 100%); }
+.impact-slab::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(115deg, rgb(8 10 12 / 0.07) 0 2px, transparent 2px 22px),
+    linear-gradient(100deg, rgb(216 245 247 / 0.55), transparent 45%);
+}
+.impact-dark::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(60% 90% at 85% 50%, rgb(0 199 217 / 0.22), transparent 65%),
+    repeating-linear-gradient(90deg, rgb(0 199 217 / 0.06) 0 1px, transparent 1px 88px);
+}
+.impact-btn { box-shadow: 0 0 0 1px rgb(0 199 217 / 0.5), 0 18px 50px -12px rgb(0 199 217 / 0.8); }
+.impact-fill { color: var(--color-teal); }
+.industry-row::before {
+  content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--color-teal), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 420ms var(--ease-out-expo);
+  box-shadow: 0 0 16px rgb(0 199 217 / 0.9);
+}
+.industry-row.is-active::before, .industry-row:hover::before { transform: scaleX(1); }
+.pillar { transition: background-color 300ms, box-shadow 300ms; }
+.pillar:hover { background-color: #10161a; box-shadow: inset 0 0 80px rgb(0 199 217 / 0.12); }
+.flow-line {
+  position: absolute; left: 0; top: 0; height: 2px; width: 40%;
+  background: linear-gradient(90deg, transparent, var(--color-teal), var(--color-ice));
+  box-shadow: 0 0 18px rgb(0 199 217 / 0.9);
+  animation: flow-x 3.6s linear infinite;
+}
+@keyframes flow-x { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+@keyframes meter { to { transform: scaleX(1); } }
+@keyframes slab-in { from { clip-path: polygon(0 50%, 0 50%, 0 50%, 0 50%); } to { clip-path: polygon(0 9%, 100% 0, 100% 91%, 0 100%); } }
+@keyframes line-in { from { opacity: 0; transform: translateX(-9vw) skewX(-10deg); } to { opacity: 1; transform: none; } }
+@keyframes fill-in { to { background-position: 0 0; } }
+@keyframes word-in { from { opacity: 0.14; } to { opacity: 1; } }
+@supports (animation-timeline: view()) {
+  .scroll-meter { animation: meter linear both; animation-timeline: scroll(root); }
+  .impact-slab { animation: slab-in linear both; animation-timeline: view(); animation-range: entry 0% cover 38%; }
+  .impact-line { animation: line-in linear both; animation-timeline: view(); animation-range: entry calc(10% + var(--i) * 25%) cover calc(28% + var(--i) * 8%); }
+  .impact-fill {
+    color: transparent; -webkit-text-stroke: 2px var(--color-teal);
+    background: linear-gradient(90deg, var(--color-teal) 50%, transparent 50%) 100% 0 / 200% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    animation: line-in linear both, fill-in linear both; animation-timeline: view(), view();
+    animation-range: entry calc(10% + var(--i) * 25%) cover calc(28% + var(--i) * 8%), cover calc(22% + var(--i) * 8%) cover calc(48% + var(--i) * 8%);
+  }
+  .quote-word { animation: word-in linear both; animation-timeline: view(); animation-range: cover calc(12% + var(--i) * 3.5%) cover calc(24% + var(--i) * 3.5%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-meter, .flow-line { display: none; }
+  .impact-slab, .impact-line, .quote-word { animation: none !important; }
+  .impact-fill { animation: none !important; background-position: 0 0; }
+}
+html.reduce-motion .scroll-meter, html.reduce-motion .flow-line { display: none; }
+html.reduce-motion .impact-slab, html.reduce-motion .impact-line, html.reduce-motion .quote-word { animation: none !important; }
+html.reduce-motion .impact-fill { animation: none !important; background-position: 0 0; }

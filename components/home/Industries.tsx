@@ -32,8 +32,8 @@ export function Industries() {
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                   data-cta={`industry-${ind.href.split("/")[2]}`}
-                  className={`group flex items-baseline gap-5 py-5 transition-colors ${
-                    active === i ? "text-white" : "text-titanium-light hover:text-white"
+                  className={`industry-row group relative flex items-baseline gap-5 py-5 transition-colors ${
+                    active === i ? "is-active text-white" : "text-titanium-light hover:text-white"
                   }`}
                 >
                   <span className={`mono-data ${active === i ? "text-teal" : "text-titanium-light"}`}>0{i + 1}</span>
@@ -51,7 +51,7 @@ export function Industries() {
             ))}
           </ul>
 
-          <div aria-live="polite" className="relative hidden overflow-hidden border border-graphite bg-obsidian lg:col-span-5 lg:block">
+          <div aria-live="polite" className="relative hidden overflow-hidden border border-teal/40 bg-obsidian shadow-[0_40px_90px_-40px_rgb(0_199_217/0.6)] lg:col-span-5 lg:block">
             <div aria-hidden="true" className="absolute inset-0 opacity-60">
               <ContourField className="h-full w-full" seed={active + 3} highlight={[active % 5]} lines={12} />
             </div>

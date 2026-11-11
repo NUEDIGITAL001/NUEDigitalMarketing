@@ -791,7 +791,46 @@ const rain: Draw = (c, w, h, t) => {
   }
 };
 
+/** Homepage: a field of light rising from the ground and rushing toward the viewer. */
+const surge: Draw = (c, w, h, t, p) => {
+  const hy = h * (0.44 - p * 0.08), vx = w * 0.66, rows = 16, sp = t * 0.16, fr = sp % 1, base = Math.floor(sp);
+  const hg = c.createRadialGradient(vx, hy, 0, vx, hy, w * 0.55);
+  hg.addColorStop(0, T(0.3));
+  hg.addColorStop(0.4, T(0.08));
+  hg.addColorStop(1, T(0));
+  c.fillStyle = hg;
+  c.fillRect(0, 0, w, h);
+  c.strokeStyle = T(0.5);
+  c.lineWidth = 1;
+  L(c, 0, hy, w, hy);
+  for (let r = 0; r < rows; r++) {
+    const d = (r + fr) / rows, s = d * d, id = r - base, k0 = 0.1 + s;
+    const y = hy + s * (h - hy) * 1.08;
+    c.strokeStyle = T(0.05 + s * 0.2);
+    L(c, 0, y, w, y);
+    for (let k = -13; k <= 13; k++) {
+      const x = vx + k * w * 0.105 * k0;
+      if (x < -40 || x > w + 40) continue;
+      const seed = rand(id * 57 + k * 13);
+      const wave = Math.pow(Math.sin(k * 0.45 + id * 0.6 + t * 0.7) * 0.5 + 0.5, 2);
+      const ph = (0.08 + wave * seed) * h * 0.6 * k0, pw = Math.max(1.5, 13 * k0), a = Math.min(1, d * 4) * (1 - s * 0.35);
+      const g = c.createLinearGradient(0, y, 0, y - ph);
+      g.addColorStop(0, seed > 0.82 ? I(0.95 * a) : T(0.9 * a));
+      g.addColorStop(1, T(0));
+      c.fillStyle = g;
+      c.fillRect(x - pw / 2, y - ph, pw, ph);
+      if (seed > 0.82 && wave > 0.6) glow(c, x, y, pw * 2.4, 0.55 * a);
+    }
+  }
+  for (let i = 0; i < 46; i++) {
+    const u = (t * (0.05 + rand(i) * 0.08) + rand(i + 3)) % 1;
+    const x = w * (0.3 + rand(i + 7) * 0.7) + Math.sin(t + i) * 12, y = h - u * h * 0.9;
+    c.fillStyle = I((1 - u) * 0.8);
+    c.fillRect(x, y, 2, 2 + rand(i + 1) * 10);
+  }
+};
+
 export const draws2 = {
-  ascent, strata, neural, radar, funnel, orbit, blueprint, prism, ribbons, resonance, circuit, aperture,
+  surge, ascent, strata, neural, radar, funnel, orbit, blueprint, prism, ribbons, resonance, circuit, aperture,
   vitals, align, flock, rooftops, speed, lattice, towers, beacon, signal, scaffold, horizon, helix, rain,
 } satisfies Record<string, Draw>;
