@@ -40,7 +40,7 @@ npx wrangler dev
 ## Troubleshooting
 
 - The build log shows the branch it built. Production builds must say
-  `cloudflare-hosting` (later `main`), never an older branch.
+  `main` (the production branch since 2026-11-12), never an older branch.
 - "Retry build" re-runs the same commit on the same branch. After changing
   the production branch, push a new commit to start a build on it.
 - Form secrets belong under Settings → Runtime variables and secrets
