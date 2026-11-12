@@ -1,10 +1,23 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
-import { submitContact, type ContactState } from "@/app/actions/contact";
+import type { ContactState } from "@/lib/contact";
 import { track } from "@/lib/analytics";
 
 const initial: ContactState = { status: "idle" };
+
+/** Sends the form to the /api/contact function and returns its verdict. */
+async function submitContact(_prev: ContactState, formData: FormData): Promise<ContactState> {
+  const values = Object.fromEntries([...formData.entries()].filter(([k, v]) => k !== "company_url" && typeof v === "string")) as ContactState["values"];
+  try {
+    const res = await fetch("/api/contact", { method: "POST", body: formData, headers: { accept: "application/json" } });
+    const data = (await res.json()) as ContactState;
+    if (data && (data.status === "success" || data.status === "error")) return data;
+    throw new Error("unexpected response");
+  } catch {
+    return { status: "error", values, message: "Sorry, something went wrong sending your message. Please try again, or call or email us." };
+  }
+}
 
 type FieldDef = {
   name: "name" | "phone" | "email" | "business" | "location" | "website";

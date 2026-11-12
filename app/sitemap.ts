@@ -21,6 +21,8 @@ const paths = [
  * Rebuilt on every deploy. Blog posts are read from content/blog, so a
  * new post appears here (with its date) as soon as it is published.
  */
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = allPosts();
   return [
