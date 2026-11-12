@@ -36,3 +36,12 @@ npx wrangler dev
   `public/_redirects`.
 - `next/image` is unoptimised: export images at the size they are shown.
 - Anything that must run on the server goes in `worker/index.ts`.
+
+## Troubleshooting
+
+- The build log shows the branch it built. Production builds must say
+  `cloudflare-hosting` (later `main`), never an older branch.
+- "Retry build" re-runs the same commit on the same branch. After changing
+  the production branch, push a new commit to start a build on it.
+- Form secrets belong under Settings → Runtime variables and secrets
+  (Production), not under Builds.
