@@ -33,7 +33,7 @@ post file.
 5. **Check:** `npx tsc --noEmit`, `npm run lint`, `npm run build`. The build
    fails with a plain message if a field, category, image or link is wrong.
    Open the post and `/blog/` locally at desktop and phone width.
-6. **Publish:** commit and push. Netlify deploys automatically. Tell Matt the
+6. **Publish:** commit and push. The host deploys automatically. Tell Matt the
    URL, the pages it links to and the pages that now link back to it.
 
 ## Front matter
