@@ -19,7 +19,7 @@ export function Impact({
         <h2 id={`${id}-title`} className="impact-title mt-6 font-display font-bold uppercase leading-[0.9] tracking-[-0.03em]">
           {lines.map((l, i) => (
             <span key={l} className={`impact-line block ${!slab ? "impact-fill" : ""}`} style={{ ["--i" as string]: i }}>
-              {l}
+              {l}{i < lines.length - 1 ? " " : ""}
             </span>
           ))}
         </h2>
